@@ -25,3 +25,14 @@ TEXTS = [
     in modern oceans. Other fish such as paddlefish,
     garpike and stingray are also present.'''
 ]
+registred_users = {
+    "user": ["bob", "ann", "mike", "liz"],
+    "password": ["123", "pass123", "password123", "pass123"]
+}
+user_name = input("Zadejte uživatelské jméno:\n")
+password = input("Zadejte heslo:\n")
+
+if user_name in registred_users:
+    if registred_users[user_name] == password:   
+
+
