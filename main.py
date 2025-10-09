@@ -33,20 +33,31 @@ registred_users = {
 }
 user_name = input("username: ")
 password = input("password: ")
-print("-"*len("Enter a number btw. 1 and 3 to select: 1"))
+print("-"*40)
 if user_name in registred_users:
     if registred_users[user_name] == password:
         print(f"Welcome to app, {user_name}\nWe have {len(TEXTS)} text to be analyzed.")
     else:
         print("unregistered user, terminating the program..")
         exit()
-print("-"*len("Enter a number btw. 1 and 3 to select: 1"))
-text_choise = (input(f"Enter a number btw. 1 and {len(TEXTS)} to select: "))
+print("-"*40)
+text_choise = ((input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")))
 if not text_choise.isdigit():
     print("You did not enter a number. Terminating the program..")
     exit()
-if not text_choise in range(1, len(TEXTS)):
+if not int(text_choise) in range(1, len(TEXTS)):
     print(f"You did not enter a number btw. 1 and {len(TEXTS)}. Terminating the program..") 
     exit()       
-choosen_text = TEXTS[int(text_choise)-1]
+choosen_text = TEXTS[int(text_choise)-1].split()
+
+number_words = len(choosen_text)
+
+titlecase = 0
+for t in choosen_text:
+    if t.istitle():
+        titlecase += 1
+
+print(number_words)
+print(titlecase)
+
 
