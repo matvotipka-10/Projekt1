@@ -42,22 +42,54 @@ if user_name in registred_users:
         exit()
 print("-"*40)
 text_choise = ((input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")))
+print("-"*40)
 if not text_choise.isdigit():
     print("You did not enter a number. Terminating the program..")
     exit()
-if not int(text_choise) in range(1, len(TEXTS)):
+if int(text_choise) not in range(1, len(TEXTS)+1):
     print(f"You did not enter a number btw. 1 and {len(TEXTS)}. Terminating the program..") 
     exit()       
 choosen_text = TEXTS[int(text_choise)-1].split()
 
 number_words = len(choosen_text)
-
 titlecase = 0
-for t in choosen_text:
-    if t.istitle():
+uppercase = 0
+lowercase = 0
+numeric_string = 0
+sum_of_all = 0
+for w in choosen_text:
+    if w.istitle():
         titlecase += 1
+    if w.isupper():
+        uppercase += 1
+    if w.islower():
+        lowercase += 1
+    if w.isdigit():
+        numeric_string += 1
+        sum_of_all += int(w)
 
-print(number_words)
-print(titlecase)
+print(f"""There are {number_words} words in the selected text.
+There are {titlecase} titlecase words.
+There are {uppercase} uppercase words.
+There are {lowercase} lowercase words.
+There are {numeric_string} numeric strings.
+The sum of all the numbers {sum_of_all}.
+""")
+print("-"*40)
+print("LEN|  OCCURRENCES  |NR.")
+print("-"*40)
 
+graf_word_length = {}
+for word in choosen_text:
+    if word.isalpha():
+        length = len(word)
+        if length not in graf_word_length:
+            graf_word_length[length] = [word]
+        else:
+            graf_word_length[length].append(word)
+            
+
+for length, count in sorted(graf_word_length.items()):
+    stars = len(count) * "*"
+    print(f"{length:>3}| {stars:<14}|{len(count)}")
 
