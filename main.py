@@ -40,6 +40,10 @@ if user_name in registred_users:
     else:
         print("unregistered user, terminating the program..")
         exit()
+else:
+    print("unregistered user, terminating the program..")
+    exit()
+
 print("-"*40)
 text_choise = ((input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")))
 print("-"*40)
@@ -79,14 +83,16 @@ print("-"*40)
 print("LEN|  OCCURRENCES  |NR.")
 print("-"*40)
 
+
 graf_word_length = {}
+
 for word in choosen_text:
-    if word.isalpha():
-        length = len(word)
-        if length not in graf_word_length:
-            graf_word_length[length] = [word]
-        else:
-            graf_word_length[length].append(word)
+    clean_word = word.strip("?!,.:;")
+    length = len(clean_word)
+    if length not in graf_word_length:
+        graf_word_length[length] = [clean_word]
+    else:
+        graf_word_length[length].append(clean_word)
             
 
 for length, count in sorted(graf_word_length.items()):
