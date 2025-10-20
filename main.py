@@ -25,7 +25,8 @@ TEXTS = [
     in modern oceans. Other fish such as paddlefish,
     garpike and stingray are also present.'''
 ]
-registred_users = {
+
+registered_users = {
     "bob": "123",
     "ann": "pass123",
     "mike": "password123",
@@ -34,34 +35,34 @@ registred_users = {
 user_name = input("username: ")
 password = input("password: ")
 print("-"*40)
-if user_name in registred_users:
-    if registred_users[user_name] == password:
-        print(f"Welcome to app, {user_name}\nWe have {len(TEXTS)} text to be analyzed.")
+if user_name in registered_users:
+    if registered_users[user_name] == password:
+        print(f"Welcome to app, {user_name}\nWe have {len(TEXTS)} texts to be analyzed.")
     else:
         print("unregistered user, terminating the program..")
         exit()
 else:
     print("unregistered user, terminating the program..")
     exit()
+print("-"*40)
 
+text_choice = ((input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")))
 print("-"*40)
-text_choise = ((input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")))
-print("-"*40)
-if not text_choise.isdigit():
+if not text_choice.isdigit():
     print("You did not enter a number. Terminating the program..")
     exit()
-if int(text_choise) not in range(1, len(TEXTS)+1):
+if int(text_choice) not in range(1, len(TEXTS)+1):
     print(f"You did not enter a number btw. 1 and {len(TEXTS)}. Terminating the program..") 
     exit()       
-choosen_text = TEXTS[int(text_choise)-1].split()
+chosen_text = TEXTS[int(text_choice)-1].split()
 
-number_words = len(choosen_text)
+number_words = len(chosen_text)
 titlecase = 0
 uppercase = 0
 lowercase = 0
 numeric_string = 0
 sum_of_all = 0
-for w in choosen_text:
+for w in chosen_text:
     if w.istitle():
         titlecase += 1
     if w.isupper():
@@ -71,7 +72,6 @@ for w in choosen_text:
     if w.isdigit():
         numeric_string += 1
         sum_of_all += int(w)
-
 print(f"""There are {number_words} words in the selected text.
 There are {titlecase} titlecase words.
 There are {uppercase} uppercase words.
@@ -83,10 +83,8 @@ print("-"*40)
 print("LEN|  OCCURRENCES  |NR.")
 print("-"*40)
 
-
 graf_word_length = {}
-
-for word in choosen_text:
+for word in chosen_text:
     clean_word = word.strip("?!,.:;")
     length = len(clean_word)
     if length not in graf_word_length:
@@ -94,7 +92,6 @@ for word in choosen_text:
     else:
         graf_word_length[length].append(clean_word)
             
-
 for length, count in sorted(graf_word_length.items()):
     stars = len(count) * "*"
     print(f"{length:>3}| {stars:<14}|{len(count)}")
